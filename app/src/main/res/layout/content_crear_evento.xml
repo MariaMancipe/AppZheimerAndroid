@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="co.uniandes.appzheimer.activities.CrearEventoActivity"
+    tools:showIn="@layout/activity_crear_evento">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCrearEvento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/nombreEventolbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_evento_lbl"/>
+
+        <EditText
+            android:id="@+id/nombreEventoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_evento_lbl"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/horaEventolbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/hora_evento_lbl"/>
+
+        <EditText
+            android:id="@+id/horaEventoInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="time"/>
+
+        <TextView
+            android:id="@+id/acompanhadoEventolbl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/acompanhado_lbl"/>
+
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton android:id="@+id/si_acompanhado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/si_acompanhado"
+                android:onClick="onRadioButtonClicked"/>
+            <RadioButton android:id="@+id/no_acompanhado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/no_acompanhado"
+                android:onClick="onRadioButtonClicked"/>
+        </RadioGroup>
+
+
+    </LinearLayout>
+
+</RelativeLayout>

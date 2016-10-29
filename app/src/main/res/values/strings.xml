@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">AppZheimer</string>
+    <string name="title_activity_menu_principal">Menu</string>
+    <string name="crear_perfil_button">Crear perfil</string>
+    <string name="salir_button">Salir</string>
+    <string name="title_activity_crear_perfil">Crear el perfil del paciente</string>
+    <string name="ingresar_button">Ingresar</string>
+    <string name="editar_rutina_button">Editar Rutina</string>
+    <string name="reconocer_familiares_button"> Juego de Reconocimiento</string>
+    <string name="title_activity_lista_rutina">Rutina</string>
+    <string name="title_activity_reconocer_familiar">Reconocer Familiares</string>
+    <string name="nombre_paciente_lbl">Nombre del Paciente</string>
+    <string name="apodo_paciente_lbl">Sobrenombre del Paciente</string>
+    <string name="fecha_nacimiento_paciente_lbl"> Fecha de Nacimiento</string>
+    <string name="title_activity_crear_evento">Agregar Evento a la Rutina</string>
+    <string name="nombre_evento_lbl">Nombre</string>
+    <string name="hora_evento_lbl">Hora</string>
+    <string name="acompanhado_lbl">El paciente está acompañado por un familiar:</string>
+    <string name="si_acompanhado">Si</string>
+    <string name="no_acompanhado">No</string>
+    <string name="title_activity_lista_familiares">Lista de Familiares</string>
+    <string name="title_activity_crear_familiar">Agregar un Familiar</string>
+    <string name="nombre_familiar_lbl">Nombre</string>
+    <string name="apodo_familiar_lbl">Sobrenombre</string>
+    <string name="parentesco_familiar_lbl">Parentesco</string>
+</resources>

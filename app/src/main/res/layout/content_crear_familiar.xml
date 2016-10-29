@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="co.uniandes.appzheimer.activities.CrearFamiliarActivity"
+    tools:showIn="@layout/activity_crear_familiar">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutCrearFamiliar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:id="@+id/nombreFamiliarLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/nombre_familiar_lbl"/>
+
+        <EditText
+            android:id="@+id/nombreFamiliarInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/nombre_familiar_lbl"
+            android:inputType="text"/>
+
+        <TextView
+            android:id="@+id/apodoFamiliarLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/apodo_familiar_lbl"/>
+
+        <EditText
+            android:id="@+id/apodoFamiliarInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/apodo_familiar_lbl"
+            android:inputType="text"/>
+        <TextView
+            android:id="@+id/parentescoFamiliarLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/parentesco_familiar_lbl"/>
+        <Spinner
+            android:id="@+id/parentescoSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></Spinner>
+    </LinearLayout>
+
+</RelativeLayout>

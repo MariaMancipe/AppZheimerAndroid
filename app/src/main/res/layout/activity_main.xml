@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".activities.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true">
+
+        <Button
+            android:id="@+id/crearPerfilBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="crearPerfil"
+            android:text="@string/crear_perfil_button"/>
+        <Button
+            android:id="@+id/salirBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="salir"
+            android:text="@string/salir_button"/>
+        <Button
+            android:id="@+id/ingresarBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="mostrarMenuPrincipal"
+            android:text="@string/ingresar_button"/>
+
+    </LinearLayout>
+</RelativeLayout>
