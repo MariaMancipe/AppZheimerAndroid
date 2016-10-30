@@ -57,6 +57,12 @@
             android:text="@string/fecha_nacimiento_paciente_lbl"
             android:onClick="showDatePickerDialog" />
 
+        <EditText
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:id="@+id/fechaNacimientoInput"
+            android:visibility="invisible"/>
+
     </LinearLayout>
 
 </RelativeLayout>
