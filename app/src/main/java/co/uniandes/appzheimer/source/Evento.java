@@ -12,6 +12,11 @@ public class Evento {
     private Date hora;
     private boolean acompanhado;
 
+    public Evento()
+    {
+
+    }
+
     public Evento(String nombre, String rutaImagen, Date hora, boolean acompanhado) {
         this.nombre = nombre;
         this.rutaImagen = rutaImagen;

@@ -35,6 +35,7 @@ public class Paciente {
         familiares = new ArrayList<Familiar>();
         nombreEventos = new ArrayList<String>();
         nombreFamiliares = new ArrayList<String>();
+        rutina = new ArrayList<Evento>();
     }
 
     public void addFamiliar(String nombre, String parentesco, String apodo, String rutaImagen, String rutaSonido){
@@ -43,7 +44,7 @@ public class Paciente {
     }
 
     public void addEvento(String nombre, String rutaImagen, Date hora, boolean acompanhado){
-        rutina.add(new Evento(nombre,rutaImagen,hora, acompanhado));
+        rutina.add(new Evento(nombre,rutaImagen,hora,acompanhado));
         nombreEventos.add(nombre);
     }
 
