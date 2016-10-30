@@ -25,12 +25,21 @@
             android:layout_height="wrap_content"
             android:onClick="editarRutina"
             android:text="@string/editar_rutina_button"/>
+
+        <Button
+            android:id="@+id/agregarFamiliar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="verFamiliares"
+            android:text="@string/agregar_familiar_button"/>
+
         <Button
             android:id="@+id/jugarBtn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="reconocerFamiliares"
             android:text="@string/reconocer_familiares_button"/>
+
     </LinearLayout>
 
 </RelativeLayout>

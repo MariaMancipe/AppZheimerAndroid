@@ -92,4 +92,14 @@ public class Paciente {
         return nombreFamiliares;
     }
 
+    public Evento buscarRutina(String nombreP)
+    {
+        for (int i=0;i<rutina.size();i++)
+        {
+            Evento actual = rutina.get(i);
+            if (actual.getNombre().equalsIgnoreCase(nombreP))
+                return actual;
+        }
+        return null;
+    }
 }

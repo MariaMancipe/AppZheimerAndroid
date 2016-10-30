@@ -74,7 +74,6 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                         if(!f.getParentesco().equals(parentesco))
                             AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setParentesco(parentesco);
                         listaFamiliar(view);
-
                     }else{
                         AppZheimer.darInstancia().agregarFamiliar(nombre.getText().toString(),parentesco,apodo.getText().toString(),"","");
                         listaFamiliar(view);

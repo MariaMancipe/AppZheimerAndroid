@@ -6,6 +6,8 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -49,6 +51,35 @@ public class ListaRutinaActivity extends AppCompatActivity {
 
         });
 
+    }
+
+    /**
+     * Metodo para crear el menu
+     * @param menu el menu que se va a crear
+     * @return true
+     */
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_options,menu);
+        return  true;
+    }
+
+    /**
+     * Metodo para que los elementos del menu funciones
+     * @param item el item que se selecciono
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        int id = item.getItemId();
+        if (id==R.id.menuPrincipal)
+        {
+            Intent intent = new Intent(this,MenuPrincipalActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     public void crearEvento(View v){

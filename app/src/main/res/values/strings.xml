@@ -23,4 +23,5 @@
     <string name="nombre_familiar_lbl">Nombre</string>
     <string name="apodo_familiar_lbl">Sobrenombre</string>
     <string name="parentesco_familiar_lbl">Parentesco</string>
+    <string name="agregar_familiar_button">Ver Familiares</string>
 </resources>

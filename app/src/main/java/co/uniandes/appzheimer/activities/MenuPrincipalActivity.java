@@ -31,4 +31,10 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         Intent intent = new Intent(this, ReconocerFamiliarActivity.class);
         startActivity(intent);
     }
+
+    public void verFamiliares(View v)
+    {
+        Intent intent = new Intent(this,ListaFamiliaresActivity.class);
+        startActivity(intent);
+    }
 }
