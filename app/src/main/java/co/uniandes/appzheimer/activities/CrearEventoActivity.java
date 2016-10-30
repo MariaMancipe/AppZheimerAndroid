@@ -54,6 +54,7 @@ public class CrearEventoActivity extends AppCompatActivity {
             setTitle("Editar Evento de la Rutina");
             Evento e = AppZheimer.darInstancia().getPaciente().getRutina().get(indice);
             nombre.setText(e.getNombre());
+            findViewById(R.id.eli).setVisibility(View.VISIBLE);
             if(e.isAcompanhado())
                 si.setChecked(true);
             else
@@ -95,6 +96,17 @@ public class CrearEventoActivity extends AppCompatActivity {
 
                 }
 
+            }
+        });
+
+        FloatingActionButton eli = (FloatingActionButton) findViewById(R.id.eli);
+        eli.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                AppZheimer.darInstancia().getPaciente().eliminarEvento(indice);
+                crearDialogo("Informacion","El evento ha sido eliminado");
+                listaRutina(view);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);

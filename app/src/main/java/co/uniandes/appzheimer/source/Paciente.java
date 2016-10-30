@@ -102,4 +102,16 @@ public class Paciente {
         }
         return null;
     }
+
+    public void eliminarEvento(int indice)
+    {
+        rutina.remove(indice);
+        nombreEventos.remove(indice);
+    }
+
+    public void eliminarFamiliar(int indice)
+    {
+        nombreFamiliares.remove(indice);
+        familiares.remove(indice);
+    }
 }

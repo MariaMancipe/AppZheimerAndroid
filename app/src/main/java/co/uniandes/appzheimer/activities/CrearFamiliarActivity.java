@@ -57,6 +57,7 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
             nombre.setText(f.getNombre());
             apodo.setText(f.getApodo());
             parentescos.setSelection(Familiar.indiceParentesco(f.getParentesco()));
+            findViewById(R.id.eli).setVisibility(View.VISIBLE);
         }
 
         final FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -79,6 +80,16 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                         listaFamiliar(view);
                     }
                 }
+            }
+        });
+
+        final FloatingActionButton eli = (FloatingActionButton) findViewById(R.id.eli);
+        eli.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view)
+            {
+                AppZheimer.darInstancia().getPaciente().eliminarFamiliar(indice);
+                listaFamiliar(view);
             }
         });
     }
