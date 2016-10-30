@@ -63,7 +63,7 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(nombre.getText().toString().equals("") || nombre.getText().toString().equals("")||parentescos.getSelectedItem()==null||parentesco!=null){
+                if(nombre.getText().toString().equals("") || nombre.getText().toString().equals("")||parentescos.getSelectedItem()==null||parentesco==null){
                     crearDialogo("Error","Por favor, ingrese todos los campos");
                 }else{
                     if(indice>-1){
