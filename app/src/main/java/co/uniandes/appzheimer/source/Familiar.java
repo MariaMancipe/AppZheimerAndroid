@@ -1,9 +1,11 @@
 package co.uniandes.appzheimer.source;
 
+import java.io.Serializable;
+
 /**
  * Created by Q551 on 17/09/2016.
  */
-public class Familiar {
+public class Familiar implements Serializable {
 
     public final static String[] parentescos = {"Hijo","Hija","Nieto","Nieta","Amigo","Amiga","Hermano","Hermana","Sobrina","Sobrino"};
 

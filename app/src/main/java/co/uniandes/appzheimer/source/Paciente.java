@@ -1,5 +1,6 @@
 package co.uniandes.appzheimer.source;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -7,7 +8,7 @@ import java.util.List;
 /**
  * Created by Q551 on 17/09/2016.
  */
-public class Paciente {
+public class Paciente implements Serializable {
 
     private final static String RUTA_RUTINA = "";
 

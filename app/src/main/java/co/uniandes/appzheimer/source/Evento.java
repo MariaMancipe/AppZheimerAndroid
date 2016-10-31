@@ -1,11 +1,12 @@
 package co.uniandes.appzheimer.source;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Q551 on 18/09/2016.
  */
-public class Evento {
+public class Evento implements Serializable {
 
     private String nombre;
     private String rutaImagen;

@@ -1,11 +1,12 @@
 package co.uniandes.appzheimer.source;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Q551 on 17/09/2016.
  */
-public class AppZheimer {
+public class AppZheimer implements Serializable {
 
     private static AppZheimer instancia;
 
