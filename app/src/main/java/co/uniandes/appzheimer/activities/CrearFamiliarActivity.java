@@ -1,7 +1,9 @@
 package co.uniandes.appzheimer.activities;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +17,7 @@ import android.widget.Spinner;
 
 import co.uniandes.appzheimer.R;
 import co.uniandes.appzheimer.source.AppZheimer;
+import co.uniandes.appzheimer.source.DBHelper;
 import co.uniandes.appzheimer.source.Familiar;
 
 public class CrearFamiliarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
@@ -74,9 +77,27 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                             AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setApodo(apodo.getText().toString());
                         if(!f.getParentesco().equals(parentesco))
                             AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setParentesco(parentesco);
+                        DBHelper db = new DBHelper(getApplicationContext());
+                        SQLiteDatabase datos = db.getWritableDatabase();
+                        ContentValues valores = new ContentValues();
+                        valores.put("nombrealias",nombre.getText().toString()+apodo.getText().toString());
+                        valores.put("nombre",nombre.getText().toString());
+                        valores.put("apodo",apodo.getText().toString());
+                        valores.put("relacion",parentesco);
+                        datos.update("FAMILIARES",valores,"nombrealias='"+nombre.getText().toString()+apodo.getText().toString()+"'",null);
+                        datos.close();
                         listaFamiliar(view);
                     }else{
-                        AppZheimer.darInstancia().agregarFamiliar(nombre.getText().toString(),parentesco,apodo.getText().toString(),"","");
+                        AppZheimer.darInstancia().agregarFamiliar(nombre.getText().toString(),apodo.getText().toString(),parentesco,"","");
+                        DBHelper db = new DBHelper(getApplicationContext());
+                        SQLiteDatabase datos = db.getWritableDatabase();
+                        ContentValues valores = new ContentValues();
+                        valores.put("nombrealias",nombre.getText().toString()+apodo.getText().toString());
+                        valores.put("nombre",nombre.getText().toString());
+                        valores.put("apodo",apodo.getText().toString());
+                        valores.put("relacion",parentesco);
+                        datos.insert("FAMILIARES",null,valores);
+                        datos.close();
                         listaFamiliar(view);
                     }
                 }
@@ -89,6 +110,9 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
             public void onClick(View view)
             {
                 AppZheimer.darInstancia().getPaciente().eliminarFamiliar(indice);
+                DBHelper db = new DBHelper(getApplicationContext());
+                SQLiteDatabase datos = db.getWritableDatabase();
+                datos.delete("FAMILIARES","nombrealias='"+nombre.getText().toString()+apodo.getText().toString()+"'",null);
                 listaFamiliar(view);
             }
         });
