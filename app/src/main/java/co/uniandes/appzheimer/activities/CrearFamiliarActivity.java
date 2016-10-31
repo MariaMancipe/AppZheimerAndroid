@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -71,6 +72,9 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
             nombre.setText(f.getNombre());
             apodo.setText(f.getApodo());
             parentescos.setSelection(Familiar.indiceParentesco(f.getParentesco()));
+            Bitmap imageBitmap = BitmapFactory.decodeFile(f.getRutaImagen());
+            ImageView imagen = (ImageView) findViewById(R.id.imagenFamiliarNuevo);
+            imagen.setImageBitmap(imageBitmap);
             findViewById(R.id.eli).setVisibility(View.VISIBLE);
         }
 
