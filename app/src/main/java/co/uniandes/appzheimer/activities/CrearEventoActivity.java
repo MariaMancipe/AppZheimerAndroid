@@ -1,7 +1,9 @@
 package co.uniandes.appzheimer.activities;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +21,7 @@ import java.util.Date;
 
 import co.uniandes.appzheimer.R;
 import co.uniandes.appzheimer.source.AppZheimer;
+import co.uniandes.appzheimer.source.DBHelper;
 import co.uniandes.appzheimer.source.Evento;
 import co.uniandes.appzheimer.source.Paciente;
 
@@ -76,6 +79,17 @@ public class CrearEventoActivity extends AppCompatActivity {
                             AppZheimer.darInstancia().getPaciente().getRutina().get(indice).setRutaImagen("");
                             AppZheimer.darInstancia().getPaciente().getRutina().get(indice).setHora(hr);
                             AppZheimer.darInstancia().getPaciente().getRutina().get(indice).setAcompanhado(acompanhado);
+                            DBHelper db = new DBHelper(getApplicationContext());
+                            SQLiteDatabase datos = db.getWritableDatabase();
+                            ContentValues valores = new ContentValues();
+                            valores.put("nombre",nombre.getText().toString());
+                            valores.put("hora",hora.getText().toString());
+                            if (acompanhado)
+                                valores.put("conPariente",1);
+                            else
+                                valores.put("conPariente",0);
+                            datos.update("EVENTOS",valores,"nombre='"+nombre.getText().toString()+"'",null);
+                            datos.close();
                             listaRutina(view);
                         } catch (ParseException e) {
                             crearDialogo("Error", "Existen problemas con la hora. Inténtelo de nuevo");
@@ -87,6 +101,17 @@ public class CrearEventoActivity extends AppCompatActivity {
                             SimpleDateFormat df = new SimpleDateFormat("hh:mm");
                             Date hr = df.parse(hora.getText().toString());
                             AppZheimer.darInstancia().agregarEvento(nombre.getText().toString(),"",hr,acompanhado);
+                            DBHelper db = new DBHelper(getApplicationContext());
+                            SQLiteDatabase datos = db.getWritableDatabase();
+                            ContentValues valores = new ContentValues();
+                            valores.put("nombre",nombre.getText().toString());
+                            valores.put("hora",hora.getText().toString());
+                            if (acompanhado)
+                                valores.put("conPariente",1);
+                            else
+                                valores.put("conPariente",0);
+                            datos.insert("EVENTOS",null,valores);
+                            datos.close();
                             listaRutina(view);
                         } catch (ParseException e) {
                            crearDialogo("Error", "Existen problemas con la hora. Inténtelo de nuevo");
@@ -105,7 +130,10 @@ public class CrearEventoActivity extends AppCompatActivity {
             public void onClick(View view)
             {
                 AppZheimer.darInstancia().getPaciente().eliminarEvento(indice);
-                crearDialogo("Informacion","El evento ha sido eliminado");
+                DBHelper db = new DBHelper(getApplicationContext());
+                SQLiteDatabase datos = db.getWritableDatabase();
+                ContentValues valores = new ContentValues();
+                datos.delete("EVENTOS","nombre='"+nombre.getText().toString()+"'",null);
                 listaRutina(view);
             }
         });
