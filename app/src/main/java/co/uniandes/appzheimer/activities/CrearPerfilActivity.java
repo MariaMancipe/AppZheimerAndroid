@@ -20,6 +20,10 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +33,8 @@ import co.uniandes.appzheimer.source.AppZheimer;
 import co.uniandes.appzheimer.source.Paciente;
 
 public class CrearPerfilActivity extends AppCompatActivity {
+
+    public static final String DATOSUSUARIO = "appzheimerDatos.txt";
 
     private int year,month,day;
 
@@ -53,9 +59,21 @@ public class CrearPerfilActivity extends AppCompatActivity {
                         SimpleDateFormat df = new SimpleDateFormat("dd/mm/yyyy");
                         Date fecha = df.parse(fechaNacimiento.getText().toString());
                         AppZheimer.darInstancia().setPaciente(new Paciente(nombre.getText().toString(), apodo.getText().toString(),fecha));
+                        OutputStreamWriter impresora = new OutputStreamWriter(openFileOutput(DATOSUSUARIO,0));
+                        String lineaNueva = System.getProperty("line.separator");
+                        impresora.write(nombre.getText().toString());
+                        impresora.write(lineaNueva);
+                        impresora.write(apodo.getText().toString());
+                        impresora.write(lineaNueva);
+                        impresora.write(fechaNacimiento.getText().toString());
+                        impresora.close();
                         listarRutina(view);
                     } catch (ParseException e) {
                         crearDialogo("Error","Hay problemas con la fecha, inténtelo de nuevo");
+                    }
+                    catch(java.io.IOException e)
+                    {
+
                     }
 
                 }
