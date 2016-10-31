@@ -56,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
                             String nombreFamiliar = cursor.getString(cursor.getColumnIndex("nombre"));
                             String apodoFamiliar = cursor.getString(cursor.getColumnIndex("apodo"));
                             String relacionFamiliar = cursor.getString(cursor.getColumnIndex("relacion"));
-                            AppZheimer.darInstancia().getPaciente().addFamiliar(nombreFamiliar,apodoFamiliar,relacionFamiliar,"","");
+                            String rutaImagen = cursor.getString(cursor.getColumnIndex("rutaImagen"));
+                            AppZheimer.darInstancia().getPaciente().addFamiliar(nombreFamiliar,apodoFamiliar,relacionFamiliar,rutaImagen,"");
                         }while (cursor.moveToNext());
                     }
                     String consultaEventos = "SELECT * FROM EVENTOS";

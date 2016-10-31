@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper
 
     public void onCreate(SQLiteDatabase db)
     {
-        String createTableFamiliares = "CREATE TABLE FAMILIARES (nombrealias TEXT PRIMARY KEY, nombre TEXT, apodo TEXT, relacion TEXT)";
+        String createTableFamiliares = "CREATE TABLE FAMILIARES (nombrealias TEXT PRIMARY KEY, nombre TEXT, apodo TEXT, relacion TEXT, rutaImagen TEXT)";
         String createTableEventos = "CREATE TABLE EVENTOS (nombre TEXT PRIMARY KEY, hora TEXT, conPariente BIT)";
         db.execSQL(createTableFamiliares);
         db.execSQL(createTableEventos);

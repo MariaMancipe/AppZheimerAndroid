@@ -2,9 +2,14 @@ package co.uniandes.appzheimer.activities;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +19,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.ImageView;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 
 import co.uniandes.appzheimer.R;
 import co.uniandes.appzheimer.source.AppZheimer;
@@ -22,11 +31,13 @@ import co.uniandes.appzheimer.source.Familiar;
 
 public class CrearFamiliarActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
+    static final int REQUEST_IMAGE_CAPTURE = 1;
     private int indice;
     private String parentesco;
     private EditText nombre;
     private EditText apodo;
     private Spinner parentescos;
+    private String rutaImagen;
     private Familiar f;
     //parentesco
 
@@ -77,6 +88,8 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                             AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setApodo(apodo.getText().toString());
                         if(!f.getParentesco().equals(parentesco))
                             AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setParentesco(parentesco);
+                        if(!f.getRutaImagen().equals(rutaImagen))
+                            AppZheimer.darInstancia().getPaciente().getFamiliares().get(indice).setRutaImagen(rutaImagen);
                         DBHelper db = new DBHelper(getApplicationContext());
                         SQLiteDatabase datos = db.getWritableDatabase();
                         ContentValues valores = new ContentValues();
@@ -84,6 +97,7 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                         valores.put("nombre",nombre.getText().toString());
                         valores.put("apodo",apodo.getText().toString());
                         valores.put("relacion",parentesco);
+                        valores.put("rutaImagen",rutaImagen);
                         datos.update("FAMILIARES",valores,"nombrealias='"+nombre.getText().toString()+apodo.getText().toString()+"'",null);
                         datos.close();
                         listaFamiliar(view);
@@ -96,6 +110,7 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
                         valores.put("nombre",nombre.getText().toString());
                         valores.put("apodo",apodo.getText().toString());
                         valores.put("relacion",parentesco);
+                        valores.put("rutaImagen",rutaImagen);
                         datos.insert("FAMILIARES",null,valores);
                         datos.close();
                         listaFamiliar(view);
@@ -141,4 +156,57 @@ public class CrearFamiliarActivity extends AppCompatActivity implements AdapterV
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+
+    public void agregarFotoFamiliar(View v)
+    {
+        tomarFoto();
+    }
+
+    public void tomarFoto()
+    {
+        Intent tomarFotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(tomarFotoIntent.resolveActivity(getPackageManager())!=null)
+        {
+            startActivityForResult(tomarFotoIntent,REQUEST_IMAGE_CAPTURE);
+        }
+    }
+
+    /**
+     * Metodo para poder manipular la informacion de la foto
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode==REQUEST_IMAGE_CAPTURE && resultCode==RESULT_OK)
+        {
+            Bundle extras = data.getExtras();
+            Bitmap imageBitmap = (Bitmap) extras.get("data");
+            ImageView imagen = (ImageView) findViewById(R.id.imagenFamiliarNuevo);
+            imagen.setImageBitmap(imageBitmap);
+            Uri tempUri = getImageUri(getApplicationContext(),imageBitmap);
+            File finalFile = new File(getRealPathFromURI(tempUri));
+            rutaImagen = finalFile.getAbsolutePath();
+        }
+    }
+
+    public Uri getImageUri(Context inContext, Bitmap imagenP)
+    {
+        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+        imagenP.compress(Bitmap.CompressFormat.JPEG,100,bytes);
+        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(),imagenP,"TituloImagen",null);
+        return Uri.parse(path);
+    }
+
+    public String getRealPathFromURI(Uri URI)
+    {
+        Cursor cursor = getContentResolver().query(URI,null,null,null,null);
+        cursor.moveToFirst();
+        int indice = cursor.getColumnIndex(MediaStore.Images.ImageColumns.DATA);
+        return cursor.getString(indice);
+    }
+
+
 }
