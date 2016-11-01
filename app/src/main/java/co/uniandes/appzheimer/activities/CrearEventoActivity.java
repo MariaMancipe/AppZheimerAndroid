@@ -2,6 +2,7 @@ package co.uniandes.appzheimer.activities;
 
 import android.app.AlertDialog;
 import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -62,6 +63,7 @@ public class CrearEventoActivity extends AppCompatActivity {
                 si.setChecked(true);
             else
                 no.setChecked(true);
+            findViewById(R.id.compartirEvento).setVisibility(View.VISIBLE);
         }
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -168,5 +170,20 @@ public class CrearEventoActivity extends AppCompatActivity {
         Intent intent = new Intent(this,ListaRutinaActivity.class);
         startActivity(intent);
     }
+
+    public void enviarEvento(View v)
+    {
+        String Mensaje = "He creado un nuevo evento que se llama: " + nombre.getText().toString() + " y lo debo realizar a las " + hora.getText().toString();
+        if (acompanhado)
+            Mensaje += " y lo tengo que hacer acompaniado";
+        else
+            Mensaje += " y lo puedo hacer solo!";
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT,Mensaje);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
 
 }

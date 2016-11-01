@@ -66,6 +66,13 @@
                 android:onClick="onRadioButtonClicked"/>
         </RadioGroup>
 
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Compartir con Whatsapp"
+            android:id="@+id/compartirEvento"
+            android:visibility="invisible"
+            android:onClick="enviarEvento"/>
 
     </LinearLayout>
 
